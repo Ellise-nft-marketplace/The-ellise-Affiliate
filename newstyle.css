@@ -9,6 +9,10 @@
     border: 1px solid white;
 
 }
+
+.logo{
+    width: 80px;
+}
 .card {
     position: relative;
     display: flex;

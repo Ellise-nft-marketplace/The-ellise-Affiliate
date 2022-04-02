@@ -25,14 +25,21 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" href="newstyle.css">
 	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 	<title>Sign in</title>
 <!--===============================================================================================-->
 	
 </head>
+
+<!-- starting -->
 <body>
 	
 	<div class="limiter">
+		<div class="navbar-brand">
+			<img class="logo" src="images/logo/ELLISE LOGO DEEP PURPLE.png" alt="Logo">
+			
+		</div>
 		<div class="container-login100">
 			<div class="wrap-login100"  x-data="getLoginData()">
 				<form class="login100-form validate-form" @submit.prevent="submitLogin">
@@ -67,7 +74,7 @@
 					</div>
 					<div class="text-center p-t-115">
 						<span class="txt1">
-							Don’t have an account?
+							Don’t have an account? <a href="signup.html"> Sign up</a>
 						</span>
 
 						<a href="signup.html" class="txt2 text-white" type="button">Sign Up</a>
@@ -103,7 +110,7 @@
 				API_URL: "https://pacific-bayou-81308.herokuapp.com",
 				BASE_URL: "http://127.0.0.1:5500",
 				LOGIN_ENDPOINT: "/api/login",
-				DASHBOARD: "/Dashboard.html"
+				DASHBOARD: "/dashboard.html"
 			},
 			status: {}
 		}
