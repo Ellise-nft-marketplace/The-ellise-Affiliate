@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<!-- <div x-show="isError" x-text="errorMsg" class="alert alert-danger mt-4"></div> -->
-					<div class="p-3">
+					<div class="p-2">
 						<ul>
 							<li x-show="isError" x-text="errorMsg" class="text-danger"></li>
 						</ul>
@@ -70,7 +70,7 @@
 							Don’t have an account?
 						</span>
 
-						<button class="txt2 text-white" type="button">Sign Up</button>
+						<a href="signup.html" class="txt2 text-white" type="button">Sign Up</a>
 					</div>
 				</form>
 			</div>
@@ -96,15 +96,16 @@
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
-	<script id="__ELISE_DATA__" type="application/json">
+	<script>
+		window.__ELISE_DATA__ =
 		{
-			"config": {
-				"API_URL": "https://pacific-bayou-81308.herokuapp.com",
-				"BASE_URL": "http://127.0.0.1:5500",
-				"LOGIN_ENDPOINT": "/api/login",
-				"DASHBOARD": "/Dashboard.html"
+			config: {
+				API_URL: "https://pacific-bayou-81308.herokuapp.com",
+				BASE_URL: "http://127.0.0.1:5500",
+				LOGIN_ENDPOINT: "/api/login",
+				DASHBOARD: "/Dashboard.html"
 			},
-			"status": {}
+			status: {}
 		}
 	</script>
 	<script src="js/el_app.js"></script>

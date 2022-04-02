@@ -1,9 +1,9 @@
-function mount_data() {
+// function mount_data() {
 
-	window.__ELISE_DATA__ = JSON.parse(document.getElementById("__ELISE_DATA__").textContent);
+// 	window.__ELISE_DATA__ = JSON.parse(document.getElementById("__ELISE_DATA__").textContent);
 
-}
-mount_data();
+// }
+// mount_data();
 function setCookie(cname, cvalue, exhrs) {
 	const d = new Date();
 	d.setTime(d.getTime() + (exhrs * 60 * 60 * 1000));
@@ -51,6 +51,21 @@ function getLoginData() {
 		}
 			this.buttonLabel = 'Logging in...'
 			this.loading = true;
+			// fetch(URL, OPTS)
+			// .then(response => Promise.all([response, response.json()]))
+			// .then(([response, json]) => {
+			// 	if (!response.ok) {
+			// 		throw new Error(json.message);
+			// 	}
+
+			// 	render(json);
+			// })
+			// .catch(exception => {
+			// 	console.log(new Map([
+			// 		[TypeError, "There was a problem fetching the response."],
+			// 		[SyntaxError, "There was a problem parsing the response."],
+			// 		[Error, exception.message]]).get(exception.constructor));
+			// });
 			fetch(this.apiUrl.liveApiHost+this.apiUrl.loginEndpoint, {
 					method: 'POST',
 					headers: {
@@ -59,16 +74,11 @@ function getLoginData() {
 					},
 					body: JSON.stringify(this.formData)
 				})
-				.then((response) => {
-					// if (response.ok) {
-					if (response.ok || response.status == 409) {
-						return response.json();
-						// return;
-					} else {
-						return Promise.reject(response);
+				.then(response => Promise.all([response, response.json()]))
+				.then(([response, resJson]) => {
+					if (!response.ok) {
+						throw new Error(resJson.message);
 					}
-				})
-				.then((resJson) => {
 					this.status = true;
 					console.log(resJson);
 					if (resJson.accessToken && resJson.refreshToken) {
@@ -81,14 +91,72 @@ function getLoginData() {
 						this.errorMsg = resJson.message;
 					}
 				})
-				.catch((error) => {
+				.catch(exception => {
 					this.isError = true;
-					console.log(error);
+					let __lfkns = {
+						'Error':exception.message,
+						'TypeError':'There was a problem fetching the response, check your network connection',
+						'SyntaxError':'Unknown Error, could not parse server response',
+					};
+					if (exception.name === "Error") {
+						this.errorMsg = exception.message;
+						console.log(exception.message);
+					} else if (exception.name === "TypeError") {
+						this.errorMsg = 'There was a problem logging in, check your network connection';
+						console.log('There was a problem fetching the response, check your network connection');
+					} else if (exception.name === "SyntaxError") {
+						this.errorMsg = 'Unknown Error, could not parse server response';
+						console.log('Unknown Error, could not parse server response');
+					}
+					// console.log(__lfkns.exceptionname);
+					// window.__lfkns = new Map([
+					// 	[TypeError, "There was a problem fetching the response."],
+					// 	[SyntaxError, "There was a problem parsing the response."],
+					// 	[Error, exception.message]]);
 				})
 				.finally(() => {
 					this.loading = false;
 					this.buttonLabel = 'Log in'
-				})
+				});
+			// fetch(this.apiUrl.liveApiHost+this.apiUrl.loginEndpoint, {
+			// 		method: 'POST',
+			// 		headers: {
+			// 			'Content-Type': 'application/json',
+			// 			// 'Access-Control-Allow-Origin': '*',
+			// 		},
+			// 		body: JSON.stringify(this.formData)
+			// 	})
+			// 	.then((response) => {
+			// 		// if (response.ok) {
+			// 		console.log(response.status,response);
+			// 		return response.json();
+			// 		if (response.ok || response.status == 409) {
+			// 			// return;
+			// 		} else {
+			// 			return Promise.reject(response);
+			// 		}
+			// 	})
+			// 	.then((resJson) => {
+			// 		this.status = true;
+			// 		console.log(resJson);
+			// 		if (resJson.accessToken && resJson.refreshToken) {
+			// 			setCookie("accessToken",resJson.accessToken,0.25);
+			// 			setCookie("refreshToken",resJson.refreshToken);
+			// 			window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.DASHBOARD;
+			// 		}
+			// 		else {
+			// 			this.isError = true;
+			// 			this.errorMsg = resJson.message;
+			// 		}
+			// 	})
+			// 	.catch((error) => {
+			// 		this.isError = true;
+			// 		console.log(error);
+			// 	})
+			// 	.finally(() => {
+			// 		this.loading = false;
+			// 		this.buttonLabel = 'Log in'
+			// 	})
 		}
 	}
 }
