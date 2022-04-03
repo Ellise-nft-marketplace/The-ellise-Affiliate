@@ -79,6 +79,11 @@
                             I agree all statements in <a href="#!">Terms of service</a>
                           </label>
                         </div>
+                        <div class="p-2">
+                          <ul>
+                            <li x-show="isSuccess" x-text="errorMsg" class="text-success"></li>
+                          </ul>
+                        </div>
                         <div class="p-3">
                           <ul>
                             <li x-show="isError" x-text="errorMsg" class="text-danger"></li>
@@ -89,7 +94,7 @@
                         </div>
       
                       </form>
-      
+                      
                     </div>
                   </div>
                 </div>
@@ -117,6 +122,18 @@
     <script src="JS/jquery.js"></script>
     <script src="JS/bootstrap.min.js"></script>
     <script src="JS/popper.js"></script>
+    <script>
+      window.__ELISE_DATA__ =
+      {
+        config: {
+          API_URL: "https://pacific-bayou-81308.herokuapp.com",
+          BASE_URL: "https://ellise.netlify.app",
+          LOGIN_ENDPOINT: "/api/login",
+          DASHBOARD: "/dashboard.html"
+        },
+        status: {}
+      }
+    </script>
     <script src="JS/el_app.js"></script>
 
 </body>
