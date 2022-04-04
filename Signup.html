@@ -6,11 +6,19 @@
     <link rel="stylesheet" href="newstyle.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="newstyle.css">
 	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <title>Sign up</title>
 </head>
 <body>
     <section class="vh-100" style="background-color: #eee;">
+      <nav class="navbar navbar-expand-lg bg-light" style="background-color: white;">
+        <div class="navbar-brand">
+          <img class="logo" src="images/logo/ELLISE PURPLE.png" alt="Logo">
+
+        </div>
+
+      </nav>
         <div class="container h-100">
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
@@ -43,7 +51,7 @@
                         <div class="d-flex flex-row align-items-center mb-0">
                           <i class="fas fa-user fa-lg me-3 fa-fw mb-4"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="text" id="form3Example3c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="sponsor's username">
+                            <input type="text" id="form3Example3c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Sponsor's username">
                             <label class="form-label" for="form3Example3c">Sponsor</label>
                           </div>
                         </div>
@@ -52,7 +60,7 @@
                           <i class="fas fa-envelope fa-lg me-3 fa-fw mb-4"></i>
                           <div class="form-outline flex-fill mb-0">
                             <input x-model="formData.email" type="email" id="form3Example3c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="example@gmail.com">
-                            <label class="form-label" for="form3Example3c">Your Email</label>
+                            <label class="form-label" for="form3Example3c"> Input Your Email</label>
                           </div>
                         </div>
       
@@ -92,6 +100,14 @@
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                           <button type="submit" class="btn-lg" id="button" x-html="buttonLabel" :disabled="loading">Register</button>
                         </div>
+                        <div class="text-center p-t-115">
+                          <span class="txt1">
+						             	Already have an account? <a href="index.html"> Login </a>
+						                </span>
+
+						                 <a href="index.html" class="txt2 text-white" type="button"> Login</a>
+				                  	</div>
+                        
       
                       </form>
                       

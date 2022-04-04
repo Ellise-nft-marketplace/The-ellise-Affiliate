@@ -1,124 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>Login</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" href="newstyle.css">
-	<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-	<title>Sign in</title>
-<!--===============================================================================================-->
-	
-</head>
+  <head>
+    <title>Ellise- Login</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/logo/ELLISE PURPLE.png" />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/bootstrap/css/bootstrap.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/font-awesome-4.7.0/css/font-awesome.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="fonts/iconic/css/material-design-iconic-font.min.css"
+    />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css" />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/css-hamburgers/hamburgers.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/animsition/css/animsition.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/select2/select2.min.css"
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="vendor/daterangepicker/daterangepicker.css"
+    />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="css/util.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" href="newstyle.css" />
+    <script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <title>Sign in</title>
+    <!--===============================================================================================-->
+  </head>
 
-<!-- starting -->
-<body>
-	
-	<div class="limiter">
+  <!-- starting -->
+  <body>
+    <div class="limiter">
+      <div class="navbar-brand">
+        <img
+          class="logo"
+          src="images/logo/ELLISE LOGO DEEP PURPLE.png"
+          alt="Logo"
+        />
+      </div>
 
-		<div class="navbar-brand">
-			<img class="logo" src="images/logo/ELLISE LOGO DEEP PURPLE.png" alt="Logo">
-			
-		</div>
-		
-		<div class="container-login100">
-			
-			<div class="wrap-login100"  x-data="getLoginData()">
-				<form class="login100-form validate-form" @submit.prevent="submitLogin">
-					<span class="login100-form-title p-b-26">
-						Sign in
-					</span>
-					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" xname="email" x-model="formData.email">
-						<span class="focus-input100" data-placeholder="Email"></span>
-					</div>
+      <div class="container-login100">
+        <div class="wrap-login100" x-data="getLoginData()">
+          <form
+            class="login100-form validate-form"
+            @submit.prevent="submitLogin"
+          >
+            <span class="login100-form-title p-b-26"> Login </span>
 
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-						<input class="input100" type="password" xname="pass" x-model="formData.password">
-						<span class="focus-input100" data-placeholder="Password"></span>
-					</div>
+            <div
+              class="wrap-input100 validate-input"
+              data-validate="Valid email is: a@b.c"
+            >
+              <input
+                class="input100"
+                type="text"
+                xname="email"
+                x-model="formData.email"
+              />
+              <span class="focus-input100" data-placeholder="Email"></span>
+            </div>
 
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn" x-html="buttonLabel" :disabled="loading"></button>
-						</div>
-					</div>
-					<!-- <div x-show="isError" x-text="errorMsg" class="alert alert-danger mt-4"></div> -->
-					<div class="p-2">
-						<ul>
-							<li x-show="isError" x-text="errorMsg" class="text-danger"></li>
-						</ul>
-					</div>
-					<div class="text-center p-t-115">
-						<span class="txt1">
-							Don’t have an account? <a href="signup.html"> Sign up</a>
-						</span>
+            <div
+              class="wrap-input100 validate-input"
+              data-validate="Enter password"
+            >
+              <span class="btn-show-pass">
+                <i class="zmdi zmdi-eye"></i>
+              </span>
+              <input
+                class="input100"
+                type="password"
+                xname="pass"
+                x-model="formData.password"
+              />
+              <span class="focus-input100" data-placeholder="Password"></span>
+            </div>
 
-						<a href="signup.html" class="txt2 text-white" type="button">Sign Up</a>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	
+            <div class="container-login100-form-btn">
+              <div class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button
+                  class="login100-form-btn"
+                  x-html="buttonLabel"
+                  :disabled="loading"
+                ></button>
+              </div>
+            </div>
+            <!-- <div x-show="isError" x-text="errorMsg" class="alert alert-danger mt-4"></div> -->
+            <div class="p-2">
+              <ul>
+                <li x-show="isError" x-text="errorMsg" class="text-danger"></li>
+              </ul>
+            </div>
+            <div class="text-center p-t-115">
+              <span class="txt1">
+                Don’t have an account? <a href="signup.html"> Sign up</a>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
-	<div id="dropDownSelect1"></div>
-	
-<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
-	<script>
-		window.__ELISE_DATA__ =
-		{
-			config: {
-				API_URL: "https://pacific-bayou-81308.herokuapp.com",
-				BASE_URL: "https://ellise.netlify.app",
-				LOGIN_ENDPOINT: "/api/login",
-				DASHBOARD: "/dashboard.html"
-			},
-			status: {}
-		}
-	</script>
-	<script src="js/el_app.js"></script>
-	
-</body>
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/bootstrap/js/popper.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/daterangepicker/moment.min.js"></script>
+    <script src="vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="js/main.js"></script>
+    <script>
+      window.__ELISE_DATA__ = {
+        config: {
+          API_URL: "https://pacific-bayou-81308.herokuapp.com",
+          BASE_URL: "https://ellise.netlify.app",
+          LOGIN_ENDPOINT: "/api/login",
+          DASHBOARD: "/dashboard.html",
+        },
+        status: {},
+      };
+    </script>
+    <script src="js/el_app.js"></script>
+  </body>
 </html>
