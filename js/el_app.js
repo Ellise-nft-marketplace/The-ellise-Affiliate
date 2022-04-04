@@ -11,6 +11,13 @@ function setCookie(cname, cvalue, exhrs) {
 	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function deleteCookie(cname) {
+	const d = new Date();
+	d.setTime(d.getTime() - (100 * 60 * 60 * 1000));
+	let expires = "expires="+d.toUTCString();
+	document.cookie = cname + "=;" + expires + ";path=/";
+}
+
 function getCookie(cname) {
 	let name = cname + "=";
 	let ca = document.cookie.split(';');
@@ -24,6 +31,79 @@ function getCookie(cname) {
 		}
 	}
 	return "";
+}
+function check_auth() {
+	if (__ELISE_DATA__.config.AUTH) {
+		if (getCookie('accessToken') != "" && getCookie('refreshToken') != "") {
+			//good
+			// window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.DASHBOARD;
+
+		}else{
+			deleteCookie('refreshToken');
+			deleteCookie('accessToken');
+			window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.LOGIN;
+		}
+	} else {
+		if (getCookie('accessToken') != "" && getCookie('refreshToken') != "") {
+			window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.DASHBOARD;
+		}else{
+			deleteCookie('refreshToken');
+			deleteCookie('accessToken');
+		}
+	}
+}
+check_auth();
+function getDashboard() {
+	return {
+		isError: false,
+		status: true,
+		user: false,
+		user:{},
+		fetchUser() {
+			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.USER_ENDPOINT, {
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer '+getCookie('accessToken'),
+				}
+			})
+			.then(response => Promise.all([response, response.json()]))
+			.then(([response, resJson]) => {
+				if (!response.ok) {
+					throw new Error(resJson.message);
+				}
+				this.user = true;
+				this.user = resJson;
+				
+			})
+			.catch(exception => {
+				this.isError = true;
+				// let __lfkns = {
+				// 	'Error':exception.message,
+				// 	'TypeError':'There was a problem fetching the response, check your network connection',
+				// 	'SyntaxError':'Unknown Error, could not parse server response',
+				// };
+				// if (exception.name === "Error") {
+				// 	this.errorMsg = exception.message;
+				// 	console.log(exception.message);
+				// } else if (exception.name === "TypeError") {
+				// 	this.errorMsg = 'There was a problem logging in, check your network connection';
+				// 	console.log('There was a problem fetching the response, check your network connection');
+				// } else if (exception.name === "SyntaxError") {
+				// 	this.errorMsg = 'Unknown Error, could not parse server response';
+				// 	console.log('Unknown Error, could not parse server response');
+				// }
+				// console.log(__lfkns.exceptionname);
+				// window.__lfkns = new Map([
+				// 	[TypeError, "There was a problem fetching the response."],
+				// 	[SyntaxError, "There was a problem parsing the response."],
+				// 	[Error, exception.message]]);
+			})
+			.finally(() => {
+				// this.loading = false;
+				// this.buttonLabel = 'Log in'
+			});
+		}
+	}
 }
 function getLoginData() {
 	return {

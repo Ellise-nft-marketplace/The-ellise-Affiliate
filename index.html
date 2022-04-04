@@ -58,6 +58,20 @@
       defer
       src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
+	<script>
+		window.__ELISE_DATA__ = {
+		  config: {
+			API_URL: "https://pacific-bayou-81308.herokuapp.com",
+			BASE_URL: "https://ellise.netlify.app",
+			LOGIN_ENDPOINT: "/api/login",
+			DASHBOARD: "/dashboard.html",
+			LOGIN: "/index.html",
+			AUTH: false,
+		  },
+		  status: {},
+		};
+	  </script>
+	<script src="js/el_app.js"></script>
     <title>Sign in</title>
     <!--===============================================================================================-->
   </head>
@@ -154,17 +168,18 @@
     <script src="vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="js/main.js"></script>
-    <script>
-      window.__ELISE_DATA__ = {
-        config: {
-          API_URL: "https://pacific-bayou-81308.herokuapp.com",
-          BASE_URL: "https://ellise.netlify.app",
-          LOGIN_ENDPOINT: "/api/login",
-          DASHBOARD: "/dashboard.html",
-        },
-        status: {},
-      };
-    </script>
+    
     <script src="js/el_app.js"></script>
+	<script>
+		window.__ELISE_DATA__ = {
+		  config: {
+			API_URL: "https://pacific-bayou-81308.herokuapp.com",
+			BASE_URL: "https://ellise.netlify.app",
+			LOGIN_ENDPOINT: "/api/login",
+			DASHBOARD: "/dashboard.html",
+		  },
+		  status: {},
+		};
+	  </script>
   </body>
 </html>

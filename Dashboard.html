@@ -7,8 +7,27 @@
     <link rel="icon" type="image/png" href="images/favicon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="newstyle.css">
+	<script
+      defer
+      src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+	<script>
+		window.__ELISE_DATA__ = {
+		  config: {
+			API_URL: "https://pacific-bayou-81308.herokuapp.com",
+			BASE_URL: "https://ellise.netlify.app",
+			LOGIN_ENDPOINT: "/api/login",
+			USER_ENDPOINT: "/api/users/me",
+			DASHBOARD: "/dashboard.html",
+			LOGIN: "/index.html",
+			AUTH: true,
+		  },
+		  status: {},
+		};
+	  </script>
+	<script src="js/el_app.js"></script>
 </head>
-<body x-data="getDashboard()">
+<body x-data="getDashboard()" x-init="fetchUser">
 
     <div class="topnav" id="myTopnav">
 		<div class="container">
@@ -46,8 +65,9 @@
 								<div class="mt-3">
 								<hr style="width: 100%; size: 50px; color: black;">
 								<div class="mt-2 mb-5">
-								<span><b>Username:</b> @username</span><br>
-								<span><b>Email:</b> example@gmail.com</span><br>
+								<span><b>First Name:</b> <span x-text="user.firstName"></span></span><br>
+								<span><b>Last Name:</b> <span x-text="user.lastName"></span></span><br>
+								<span><b>Email:</b> <span x-text="user.email"></span></span><br>
                                     </div>
 								</div>
 							</div>
