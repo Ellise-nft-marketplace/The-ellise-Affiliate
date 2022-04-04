@@ -11,8 +11,17 @@
 }
 
 .logo{
-    width: 90px;
-    padding: 9px 6px;
+    width: 95px;
+    padding: 10px  ;
+}
+.txt1{
+    color: black;
+    font-size: 15px;
+    text-align: center;
+    
+}
+#signuplink{
+    color: blue;
 }
 
 .card {
