@@ -14,14 +14,12 @@
     width: 95px;
     padding: 10px  ;
 }
-.txt1{
+.txt2 text-white{
     color: black;
     font-size: 15px;
     text-align: center;
     
-}
-#signuplink{
-    color: blue;
+    
 }
 
 .card {
