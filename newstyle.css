@@ -11,9 +11,10 @@
 }
 
 .logo{
-    width: 85px;
-    padding: 8px;
+    width: 90px;
+    padding: 9px 6px;
 }
+
 .card {
     position: relative;
     display: flex;
