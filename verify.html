@@ -54,6 +54,15 @@
 						<input class="input100" type="text" xname="email" x-model="formData.email">
 						<span class="focus-input100" data-placeholder="Verification Token"></span>
 					</div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+						  <div class="login100-form-bgbtn"></div>
+						  <button
+							class="login100-form-btn"
+							x-htmlx="buttonLabel"
+							:disabled="loading"
+						  >Verify</button>
+						</div>
 				</form>
 			</div>
 		</div>
