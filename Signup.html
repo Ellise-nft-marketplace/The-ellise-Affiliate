@@ -30,58 +30,40 @@
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"> SIGN UP</p>
       
                       <form class="mx-1 md-12"  @submit.prevent="submitReg">
-      
+                        <label class="form-label" for="form3Example1c">Full Name:</label>
                         <div class="d-flex flex-row align-items-center mb-0">
-                          <i class="fas fa-user fa-lg me-3 fa-fw mb-4"></i>
-                          <div class="form-outline flex-fill mb-0">
-                            <input x-model="formData.firstName" type="text" id="form3Example1c" class="form-control shadow-sm p-3 mb-1 bg-white rounded" placeholder="Firstname">
-                            <label class="form-label" for="form3Example1c">Firstname</label>
+                          <i class="fas fa-user fa-lg me-3 fa-fw mb-0"></i>
+                          <div class="form-outline flex-fill mb-0 ml-1">
+                            <input x-model="formData.firstName" type="text" id="form3Example1c" class="form-control shadow-sm p-3 mb-1 bg-white rounded" placeholder="Full Name">
                           </div>
                         </div>
 
-                        <!--  -->
+                        <label class="form-label mt-2" for="form3Example3c">Sponsor:</label>
                         <div class="d-flex flex-row align-items-center mb-0">
-                          <i class="fas fa-user fa-lg me-3 fa-fw mb-4"></i>
-                          <div class="form-outline flex-fill mb-0">
-                           <input x-model="formData.lastName" type="text" id="form3Example1c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Lastname">
-                          <label class="form-label" for="form3Example1c">Lastname</label>
-                          </div>
-                        </div>
-
-                        <div class="d-flex flex-row align-items-center mb-0">
-                          <i class="fas fa-user fa-lg me-3 fa-fw mb-4"></i>
-                          <div class="form-outline flex-fill mb-0">
+                          <i class="fas fa-user fa-lg me-3 fa-fw mb-0"></i>
+                          <div class="form-outline flex-fill mb-0 ml-1">
                             <input type="text" id="form3Example3c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Sponsor's username">
-                            <label class="form-label" for="form3Example3c">Sponsor</label>
+                            
                           </div>
                         </div>
 
+                        <label class="form-label mt-2" for="form3Example3c"> Email Address:</label>
                         <div class="d-flex flex-row align-items-center mb-0">
-                          <i class="fas fa-envelope fa-lg me-3 fa-fw mb-4"></i>
-                          <div class="form-outline flex-fill mb-0">
+                          <i class="fas fa-envelope fa-lg me-3 fa-fw mb-0"></i>
+                          <div class="form-outline flex-fill mb-0 ml-1">
                             <input x-model="formData.email" type="email" id="form3Example3c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="example@gmail.com">
-                            <label class="form-label" for="form3Example3c"> Input Your Email</label>
                           </div>
                         </div>
       
+                        <label class="form-label mt-2" for="form3Example4c">Password:</label>
                         <div class="d-flex flex-row align-items-center mb-0">
-                         <i class="fas fa-lock fa-lg me-3 fa-fw mb-4"></i>
-                          <div class="form-outline flex-fill mb-0">
+                         <i class="fas fa-lock fa-lg me-3 fa-fw mb-0"></i>
+                          <div class="form-outline flex-fill mb-0 ml-1">
                             <input x-model="formData.password" type="password" name="password" id="password" id="form3Example4c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Password">
-                            <label class="form-label" for="form3Example4c">Password</label>
                           </div>
                         </div>
-      
-                        <div class="d-flex flex-row align-items-center mb-0">
-                          <i class="fas fa-key fa-lg me-3 fa-fw mb-4"></i>
-                          <div class="form-outline flex-fill mb-0">
-                            <input x-model="formData.passwordConfirmation" type="password" id="form3Example4cd" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Repeat your password">
-                            <label class="form-label" for="form3Example4cd">Repeat your password</label>
-                          </div>
-                        </div>
-      
 
-                        <div class="form-check d-flex mb-5">
+                        <div class="form-check d-flex mb-0">
                           <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3c">
                           <label class="form-check-label" for="form2Example3">
                             I agree all statements in <a href="#!">Terms of service</a>
