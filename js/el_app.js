@@ -47,7 +47,7 @@ function check_auth() {
 			//good
 			// window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.DASHBOARD;
 			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.RTOKEN_ENDPOINT, {
-
+				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 					'x-refresh': getCookie('refreshToken'),
