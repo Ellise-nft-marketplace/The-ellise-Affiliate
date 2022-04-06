@@ -244,10 +244,10 @@ function getRegData() {
 	return {
 		formData: {
 			firstName: "",
-			lastName: "",
 			email: "",
 			password: "",
 			passwordConfirmation: "",
+			referrer: "",
 		},
 		status: false,
 		loading: false,
@@ -255,17 +255,60 @@ function getRegData() {
 		isError: false,
 		isSuccess: false,
 		errorMsg: "",
+		sponsorName:"<span class=\"text-success\"><i class=\"fa fa-load fa-spin\"></i>fetching sponsor...</span>",
+		sponsorId: '',
+		sponsorLink: '',
+		sponsorValid: false,
 		buttonLabel: 'Register',
 		verifyUrl: '/verify.html',
+		loginUrl: '/index.html',
 		apiUrl: {
 			baseUrl: '',
+			// liveApiHost: 'http://localhost:3000',
 			liveApiHost: 'https://pacific-bayou-81308.herokuapp.com',
 			regEndpoint: '/api/users',
+			sponsorEndpoint: '/api/affiliate/',
+		},
+		fetchSponsor() {
+			const urlParams = new URLSearchParams(location.search);
+			const ref_id = urlParams.get('ref');
+			this.sponsorLink = ref_id;
+			fetch(this.apiUrl.liveApiHost+this.apiUrl.sponsorEndpoint+ref_id)
+			.then(response => Promise.all([response, response.json()]))
+			.then(([response, resJson]) => {
+				if (!response.ok) {
+					throw new Error(resJson.message);
+				}
+				this.status = true;
+				console.log(resJson);
+				this.sponsorValid = true;
+				this.formData.referrer = resJson.sponsor.id;
+				this.sponsorId = resJson.sponsor.id;
+				this.sponsorName = "<span class=\"\">Sponsor: "+resJson.sponsor.name+"</span>";
+			})
+			.catch(resJson => {
+				this.sponsorValid = false;
+				this.formData.referrer = "random";
+				this.sponsorName = "<span class=\"text-danger\">invalid sponsor, you'll be assigned to a random sponsor</span>";
+				if (exception.name === "Error") {
+					console.log(resJson.message);
+					this.formData.referrer = resJson.sponsor.id;
+					this.sponsorId = resJson.sponsor.id;
+				}
+				// console.log(__lfkns.exceptionname);
+				// window.__lfkns = new Map([
+				// 	[TypeError, "There was a problem fetching the response."],
+				// 	[SyntaxError, "There was a problem parsing the response."],
+				// 	[Error, exception.message]]);
+			})
+			.finally(() => {
+				this.loading = false;
+				this.buttonLabel = 'Register'
+			});
 		},
 		submitReg() {
 			// Ensures all fields have data before submitting
 			if (!this.formData.firstName.length || 
-			!this.formData.lastName.length || 
 			!this.formData.email.length || 
 			!this.formData.password.length || 
 			!this.formData.passwordConfirmation.length) {
@@ -295,7 +338,7 @@ function getRegData() {
 				if (resJson.status == "success") {
 					this.isSuccess = true;
 					this.errorMsg = resJson.message;
-					window.location.href = __ELISE_DATA__.config.BASE_URL+this.verifyUrl;
+					window.location.href = __ELISE_DATA__.config.BASE_URL;
 				}
 				else {
 					this.isError = true;

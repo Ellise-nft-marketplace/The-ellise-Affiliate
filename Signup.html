@@ -25,10 +25,12 @@
               <div x-data="getRegData()" class="card text-black"  class = "shadow-lg p-3 mb-5 bg-white rounded" style="border-radius: 25px;">
                 <div class="card-body p-md-5">
                   <div class="row justify-content-center">
-                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                    <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1" x-init="fetchSponsor">
       
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4"> SIGN UP</p>
-      
+                      <p x-html="sponsorName" class="mbx-2"></p>
+                      <hr>
+                      <!-- <p x-html="sponsorId" x-show="sponsorValid" class="mt-2"></p> -->
                       <form class="mx-1 md-12"  @submit.prevent="submitReg">
                         <label class="form-label" for="form3Example1c">Full Name:</label>
                         <div class="d-flex flex-row align-items-center mb-0">
@@ -38,11 +40,11 @@
                           </div>
                         </div>
 
-                        <label class="form-label mt-2" for="form3Example3c">Sponsor:</label>
+                        <label class="form-label mt-2" for="form3Example3c">Sponsor's affiliate id:</label>
                         <div class="d-flex flex-row align-items-center mb-0">
                           <i class="fas fa-user fa-lg me-3 fa-fw mb-0"></i>
                           <div class="form-outline flex-fill mb-0 ml-1">
-                            <input type="text" id="form3Example3c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Sponsor's username">
+                            <input x-model="sponsorLink" type="text" id="form3Example3c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Sponsor's affiliate id" disabled>
                             
                           </div>
                         </div>
@@ -60,6 +62,14 @@
                          <i class="fas fa-lock fa-lg me-3 fa-fw mb-0"></i>
                           <div class="form-outline flex-fill mb-0 ml-1">
                             <input x-model="formData.password" type="password" name="password" id="password" id="form3Example4c" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Password">
+                          </div>
+                        </div>
+      
+                        <label class="form-label mt-2" for="form3Example4c">Password:</label>
+                        <div class="d-flex flex-row align-items-center mb-0">
+                         <i class="fas fa-lock fa-lg me-3 fa-fw mb-0"></i>
+                          <div class="form-outline flex-fill mb-0 ml-1">
+                            <input x-model="formData.passwordConfirmation" type="password" name="passwordConfirmation" id="passwordConfirmation" class="form-control shadow-sm p-3 mb-0 bg-white rounded" placeholder="Password">
                           </div>
                         </div>
 
