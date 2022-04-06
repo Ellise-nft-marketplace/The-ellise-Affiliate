@@ -32,16 +32,47 @@ function getCookie(cname) {
 	}
 	return "";
 }
+function logout() {
+	deleteCookie('refreshToken');
+	deleteCookie('accessToken');
+	window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.LOGIN;
+}
 function check_auth() {
 	if (__ELISE_DATA__.config.AUTH) {
 		if (getCookie('accessToken') != "" && getCookie('refreshToken') != "") {
 			//good
 			// window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.DASHBOARD;
 
+		}else if (getCookie('refreshToken') != "") {
+			//good
+			// window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.DASHBOARD;
+			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.RTOKEN_ENDPOINT, {
+
+				headers: {
+					'Content-Type': 'application/json',
+					'x-refresh': getCookie('refreshToken'),
+				}
+			})
+			.then(response => Promise.all([response, response.json()]))
+			.then(([response, resJson]) => {
+				if (!response.ok) {
+					logout();
+				}
+				this.status = true;
+				console.log(resJson);
+				if (resJson.accessToken) {
+					setCookie("accessToken",resJson.accessToken,0.25);
+				}
+				else {
+					logout();
+				}
+			})
+			.finally(() => {
+				this.loading = false;
+			});
+
 		}else{
-			deleteCookie('refreshToken');
-			deleteCookie('accessToken');
-			window.location.href = __ELISE_DATA__.config.BASE_URL+__ELISE_DATA__.config.LOGIN;
+			logout();
 		}
 	} else {
 		if (getCookie('accessToken') != "" && getCookie('refreshToken') != "") {
@@ -53,6 +84,8 @@ function check_auth() {
 	}
 }
 check_auth();
+// logout();
+
 function getDashboard() {
 	return {
 		isError: false,
