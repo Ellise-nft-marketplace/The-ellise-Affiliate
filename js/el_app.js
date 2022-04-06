@@ -59,6 +59,7 @@ function getDashboard() {
 		status: true,
 		user: false,
 		user:{},
+		copiedLink:false,
 		fetchUser() {
 			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.USER_ENDPOINT, {
 				headers: {
@@ -73,35 +74,28 @@ function getDashboard() {
 				}
 				this.user = true;
 				this.user = resJson;
+				// var ref_id = this.user.referralLink;
+				this.user.affiliateLink = window.location.origin+__ELISE_DATA__.config.REG_URL+'?ref='+this.user.referralLink;
 				
 			})
 			.catch(exception => {
 				this.isError = true;
-				// let __lfkns = {
-				// 	'Error':exception.message,
-				// 	'TypeError':'There was a problem fetching the response, check your network connection',
-				// 	'SyntaxError':'Unknown Error, could not parse server response',
-				// };
-				// if (exception.name === "Error") {
-				// 	this.errorMsg = exception.message;
-				// 	console.log(exception.message);
-				// } else if (exception.name === "TypeError") {
-				// 	this.errorMsg = 'There was a problem logging in, check your network connection';
-				// 	console.log('There was a problem fetching the response, check your network connection');
-				// } else if (exception.name === "SyntaxError") {
-				// 	this.errorMsg = 'Unknown Error, could not parse server response';
-				// 	console.log('Unknown Error, could not parse server response');
-				// }
-				// console.log(__lfkns.exceptionname);
-				// window.__lfkns = new Map([
-				// 	[TypeError, "There was a problem fetching the response."],
-				// 	[SyntaxError, "There was a problem parsing the response."],
-				// 	[Error, exception.message]]);
 			})
 			.finally(() => {
 				// this.loading = false;
 				// this.buttonLabel = 'Log in'
 			});
+		},
+		copyLink(){
+			// this.
+			var copyText = document.getElementById("affLink");
+			copyText.select();
+			copyText.setSelectionRange(0, 99999);
+			navigator.clipboard.writeText(copyText.value);
+			this.copiedLink = true;
+			setTimeout(function () {
+				this.copiedLink = false;
+			}, 5000);
 		}
 	}
 }

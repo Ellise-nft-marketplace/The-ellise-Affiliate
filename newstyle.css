@@ -8,7 +8,10 @@
   border-radius: 20px;
   border: 1px solid white;
 }
-
+.btn-ellise {
+  background-color: purple;
+  color: white;
+}
 .logo {
   width: 120px;
   padding: 10px;

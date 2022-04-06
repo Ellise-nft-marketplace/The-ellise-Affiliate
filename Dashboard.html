@@ -20,6 +20,7 @@
 			USER_ENDPOINT: "/api/users/me",
 			DASHBOARD: "/dashboard.html",
 			LOGIN: "/index.html",
+			REG_URL: "/signup.html",
 			AUTH: true,
 		  },
 		  status: {},
@@ -33,7 +34,7 @@
 		<div class="container">
         <a href="Dashboard.html">Dashboard</a>
 		<a href="Profile.html">Profile</a>
-		<a href="downline.html``=">Downline</a>
+		<a href="downline.html``=">Downlines</a>
 		<a href="#">Affiliate Link</a>
 		<div class="dropdown">
 		  <button class="dropbtn">Settings 
@@ -65,8 +66,7 @@
 								<div class="mt-3">
 								<hr style="width: 100%; size: 50px; color: black;">
 								<div class="mt-2 mb-5">
-								<span><b>First Name:</b> <span x-text="user.firstName"></span></span><br>
-								<span><b>Last Name:</b> <span x-text="user.lastName"></span></span><br>
+								<span><b>Full Name:</b> <span x-text="user.firstName"></span></span><br>
 								<span><b>Email:</b> <span x-text="user.email"></span></span><br>
                                     </div>
 								</div>
@@ -77,8 +77,16 @@
 							<div class="col-lg-12">
 								<div class="card">
 									<div class="card-body">
-										<!-- <h4 class="align-items-center text-center mb-3">Notifications</h4> -->
+										<h4 class="align-items-center text-center mb-3">Affiliate Link</h4>
 										<hr style="width: 100%; size: 50px; color: black;">
+										<!-- <input type="text" disabled value=""> -->
+										<p x-show="copiedLink" class="text-success" x-textx="user.affiliateLink">copied affiliate link</p>
+										<div class="input-group flex-nowrap">
+											<input x-model="user.affiliateLink" style="" type="text" class="form-control" placeholder="affiliateLink" aria-label="affiliateLink" disabled aria-describedby="addon-wrapping" id="affLink">
+											<div class="input-group-append">
+												<button class="btn btn-ellise" type="button" id="button-copyA" :data-copy="user.affiliateLink" @click="copyLink">Copy</button>
+											</div>
+										  </div>
 									</div>
 								</div>
 							</div>
