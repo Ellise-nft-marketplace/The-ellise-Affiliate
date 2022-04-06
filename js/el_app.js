@@ -290,7 +290,7 @@ function getRegData() {
 				this.sponsorValid = false;
 				this.formData.referrer = "random";
 				this.sponsorName = "<span class=\"text-danger\">invalid sponsor, you'll be assigned to a random sponsor</span>";
-				if (exception.name === "Error") {
+				if (resJson.name === "Error") {
 					console.log(resJson.message);
 					this.formData.referrer = resJson.sponsor.id;
 					this.sponsorId = resJson.sponsor.id;
