@@ -81,16 +81,21 @@
                                     <span><b>Email:</b> <span x-text="user.email"></span></span><br>
                                     <span><b>Downlines:</b> <span x-text="downlinesC"></span></span><br>
                                 </div> -->
-								<table class="table table-striped table-responsive w-100">
-                                    <tbody>
+								<!-- <table class="table table-striped table-responsive w-100">
+                                    <tbody> -->
                                         <template x-for="dl in downlines">
-                                            <tr >
+                                            <div class="mt-2 mb-3">
+                                                <span><b>Username:</b> <span x-text="dl.firstName"></span></span><br>
+                                                <!-- <span><b>Email:</b> <span x-text="user.email"></span></span><br>
+                                                <span><b>Downlines:</b> <span x-text="downlinesC"></span></span><br> -->
+                                            </div>
+                                            <!-- <tr >
                                                 <td x-text="dl.firstName"></td>
-                                                <!-- <td x-text="dl.email"></td> -->
-                                              </tr>
+                                                <td x-text="dl.email"></td>
+                                              </tr> -->
                                         </template>
-                                    </tbody>
-                                  </table>
+                                    <!-- </tbody>
+                                  </table> -->
 								</div>
 							</div>
 					</div>
