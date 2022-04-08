@@ -138,10 +138,15 @@ function getDownlines() {
 	return {
 		isError: false,
 		status: true,
-		user: false,
+		userValid: false,
 		user:{},
 		downlines:{},
+		downlinesC:0,
 		copiedLink:false,
+		init() {
+			this.fetchUser()
+			this.fetchDownlines()
+		},
 		fetchUser() {
 			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.USER_ENDPOINT, {
 				headers: {
@@ -154,11 +159,11 @@ function getDownlines() {
 				if (!response.ok) {
 					throw new Error(resJson.message);
 				}
-				this.user = true;
+				this.userValid = true;
 				this.user = resJson;
 				// var ref_id = this.user.referralLink;
 				this.user.affiliateLink = window.location.origin+__ELISE_DATA__.config.REG_URL+'?ref='+this.user.referralLink;
-				
+				this.fetchDownlines(resJson.referralLink);
 			})
 			.catch(exception => {
 				this.isError = true;
@@ -168,8 +173,8 @@ function getDownlines() {
 				// this.buttonLabel = 'Log in'
 			});
 		},
-		fetchDownlines() {
-			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.DOWNLINES_ENDPOINT, {
+		fetchDownlines(uid) {
+			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.DOWNLINES_ENDPOINT+uid, {
 				headers: {
 					'Content-Type': 'application/json',
 					Authorization: 'Bearer '+getCookie('accessToken'),
@@ -180,8 +185,8 @@ function getDownlines() {
 				if (!response.ok) {
 					throw new Error(resJson.message);
 				}
-				this.user = true;
 				this.downlines = resJson.downlines;
+				this.downlinesC = Object.keys(resJson.downlines).length;
 				
 			})
 			.catch(exception => {
