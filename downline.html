@@ -76,18 +76,17 @@
 					<div class="card">
 						<div class="card-body align-items-center">
 							<div class="container mt-4">
-								<table class="table table-striped table-responsive">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">Username</th>
-                                        <th scope="col">Email</th>
-                                      </tr>
-                                    </thead>
+                                <!-- <div class="mt-2 mb-5">
+                                    <span><b>Username:</b> <span x-text="user.firstName"></span></span><br>
+                                    <span><b>Email:</b> <span x-text="user.email"></span></span><br>
+                                    <span><b>Downlines:</b> <span x-text="downlinesC"></span></span><br>
+                                </div> -->
+								<table class="table table-striped table-responsive w-100">
                                     <tbody>
                                         <template x-for="dl in downlines">
-                                            <tr>
+                                            <tr >
                                                 <td x-text="dl.firstName"></td>
-                                                <td x-text="dl.email"></td>
+                                                <!-- <td x-text="dl.email"></td> -->
                                               </tr>
                                         </template>
                                     </tbody>

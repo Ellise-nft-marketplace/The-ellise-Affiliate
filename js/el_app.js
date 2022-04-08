@@ -370,8 +370,8 @@ function getRegData() {
 		loginUrl: '/index.html',
 		apiUrl: {
 			baseUrl: '',
-			// liveApiHost: 'http://localhost:3000',
-			liveApiHost: 'https://pacific-bayou-81308.herokuapp.com',
+			liveApiHost: 'http://localhost:3000',
+			// liveApiHost: 'https://pacific-bayou-81308.herokuapp.com',
 			regEndpoint: '/api/users',
 			sponsorEndpoint: '/api/affiliate/',
 		},
@@ -382,24 +382,29 @@ function getRegData() {
 			fetch(this.apiUrl.liveApiHost+this.apiUrl.sponsorEndpoint+ref_id)
 			.then(response => Promise.all([response, response.json()]))
 			.then(([response, resJson]) => {
-				if (!response.ok) {
-					throw new Error(resJson.message);
+				if (!response.ok && !resJson.status) {
+					throw new Error(resJson);
 				}
-				this.status = true;
 				console.log(resJson);
-				this.sponsorValid = true;
-				this.formData.referrer = resJson.sponsor.id;
+				this.status = true;
+				this.formData.referrer = resJson.sponsor.refLink;
 				this.sponsorId = resJson.sponsor.id;
-				this.sponsorName = "<span class=\"\">Sponsor: "+resJson.sponsor.name+"</span>";
+				if (resJson.status == "success") {
+					this.sponsorValid = true;
+					this.sponsorName = "<span class=\"\">Sponsor: "+resJson.sponsor.name+"</span>";
+				} else {
+					this.sponsorValid = false;
+					this.sponsorName = "<span class=\"text-danger\">invalid sponsor, you'll be assigned to a random sponsor</span>";
+				}
 			})
 			.catch(resJson => {
 				this.sponsorValid = false;
 				this.formData.referrer = "random";
 				this.sponsorName = "<span class=\"text-danger\">invalid sponsor, you'll be assigned to a random sponsor</span>";
 				if (resJson.name === "Error") {
-					console.log(resJson.message);
-					this.formData.referrer = resJson.sponsor.id;
-					this.sponsorId = resJson.sponsor.id;
+					console.log(resJson.message.json());
+					this.formData.referrer = resJson.message.sponsor.refLink;
+					this.sponsorId = resJson.message.sponsor.id;
 				}
 				// console.log(__lfkns.exceptionname);
 				// window.__lfkns = new Map([
