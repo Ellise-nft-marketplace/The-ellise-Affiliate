@@ -370,8 +370,8 @@ function getRegData() {
 		loginUrl: '/index.html',
 		apiUrl: {
 			baseUrl: '',
-			liveApiHost: 'http://localhost:3000',
-			// liveApiHost: 'https://pacific-bayou-81308.herokuapp.com',
+			// liveApiHost: 'http://localhost:3000',
+			liveApiHost: 'https://pacific-bayou-81308.herokuapp.com',
 			regEndpoint: '/api/users',
 			sponsorEndpoint: '/api/affiliate/',
 		},
