@@ -62,6 +62,7 @@ function check_auth() {
 				console.log(resJson);
 				if (resJson.accessToken) {
 					setCookie("accessToken",resJson.accessToken,0.25);
+					window.location.reload();
 				}
 				else {
 					logout();
@@ -116,6 +117,79 @@ function getDashboard() {
 			})
 			.finally(() => {
 				// this.loading = false;
+				// this.buttonLabel = 'Log in'
+			});
+		},
+		copyLink(){
+			// this.
+			var copyText = document.getElementById("affLink");
+			copyText.select();
+			copyText.setSelectionRange(0, 99999);
+			navigator.clipboard.writeText(copyText.value);
+			this.copiedLink = true;
+			setTimeout(function () {
+				this.copiedLink = false;
+			}, 5000);
+		}
+	}
+}
+
+function getDownlines() {
+	return {
+		isError: false,
+		status: true,
+		user: false,
+		user:{},
+		downlines:{},
+		copiedLink:false,
+		fetchUser() {
+			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.USER_ENDPOINT, {
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer '+getCookie('accessToken'),
+				}
+			})
+			.then(response => Promise.all([response, response.json()]))
+			.then(([response, resJson]) => {
+				if (!response.ok) {
+					throw new Error(resJson.message);
+				}
+				this.user = true;
+				this.user = resJson;
+				// var ref_id = this.user.referralLink;
+				this.user.affiliateLink = window.location.origin+__ELISE_DATA__.config.REG_URL+'?ref='+this.user.referralLink;
+				
+			})
+			.catch(exception => {
+				this.isError = true;
+			})
+			.finally(() => {
+				// this.loading = false;
+				// this.buttonLabel = 'Log in'
+			});
+		},
+		fetchDownlines() {
+			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.DOWNLINES_ENDPOINT, {
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer '+getCookie('accessToken'),
+				}
+			})
+			.then(response => Promise.all([response, response.json()]))
+			.then(([response, resJson]) => {
+				if (!response.ok) {
+					throw new Error(resJson.message);
+				}
+				this.user = true;
+				this.downlines = resJson.downlines;
+				
+			})
+			.catch(exception => {
+				this.isError = true;
+				// window.location.reload();
+			})
+			.finally(() => {
+				this.loading = false;
 				// this.buttonLabel = 'Log in'
 			});
 		},
