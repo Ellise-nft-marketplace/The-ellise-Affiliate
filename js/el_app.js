@@ -93,6 +93,7 @@ function getDashboard() {
 		status: true,
 		user: false,
 		user:{},
+		downlinesC:0,
 		copiedLink:false,
 		fetchUser() {
 			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.USER_ENDPOINT, {
@@ -110,13 +111,37 @@ function getDashboard() {
 				this.user = resJson;
 				// var ref_id = this.user.referralLink;
 				this.user.affiliateLink = window.location.origin+__ELISE_DATA__.config.REG_URL+'?ref='+this.user.referralLink;
-				
+				this.fetchDownlines(resJson.referralLink);
 			})
 			.catch(exception => {
 				this.isError = true;
 			})
 			.finally(() => {
 				// this.loading = false;
+				// this.buttonLabel = 'Log in'
+			});
+		},
+		fetchDownlines(uid) {
+			fetch(__ELISE_DATA__.config.API_URL+__ELISE_DATA__.config.DOWNLINES_ENDPOINT+uid, {
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer '+getCookie('accessToken'),
+				}
+			})
+			.then(response => Promise.all([response, response.json()]))
+			.then(([response, resJson]) => {
+				if (!response.ok) {
+					throw new Error(resJson.message);
+				}
+				this.downlinesC = Object.keys(resJson.downlines).length;
+				
+			})
+			.catch(exception => {
+				this.isError = true;
+				// window.location.reload();
+			})
+			.finally(() => {
+				this.loading = false;
 				// this.buttonLabel = 'Log in'
 			});
 		},
