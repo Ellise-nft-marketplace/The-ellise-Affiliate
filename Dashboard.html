@@ -32,31 +32,28 @@
 </head>
 <body x-data="getDashboard()" x-init="fetchUser">
 
-    <div class="topnav" id="myTopnav">
+  <!-- Starting -->
+	<div class="topnav" id="myTopnav">
 		<div class="container">
-        <a href="dashboard.html">Dashboard</a>
-		<a href="profile.html">Profile</a>
-		<a href="downline.html">Downlines</a>
-		<a href="#">Commision</a>
+        <a href="Dashboard.html">Dashboard</a>
+		<a href="Profile.html" class="active">Profile</a>
+		<a href="downline.html">Downline</a>
+		<!-- <a href="#">Affiliate Link</a> -->
+        <a href="#">Commision</a>
 		<div class="dropdown">
 		  <button class="dropbtn">Settings 
 		  </button>
 		  <div class="dropdown-content">
 			<a href="Settings.html">Edit profile</a>
-	
+			<a href="#">Link 2</a>
+			<a href="#">Link 3</a>
 		  </div>
-		 
-		    <div>
-			<a href="javascript:logout();">Log Out</a>
-		    <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
-			</div>
-
-	  
+		</div> 
+		<!-- <a href="#">Commision</a> -->
+		<a href="javascript:logout();">Log Out</a>
+		<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+	  </div>
 	</div>
-
-
-
-
 
 	 <div class="container mt-5">
 		<div class="main-body">
